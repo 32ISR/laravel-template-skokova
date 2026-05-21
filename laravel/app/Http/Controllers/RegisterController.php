@@ -17,7 +17,7 @@ class RegisterController extends Controller
     {
         $data = $request->validate([
             'name'=> 'required|string',
-            'email'=> 'required|email|uniqie:users',
+            'email'=> 'required|email|unique:users',
             'password'=> 'required|string|min:8|confirmed'
         ]);
 
@@ -28,6 +28,6 @@ class RegisterController extends Controller
 
         Auth::login($user);
 
-        return redirect()->route('/');
+        return redirect()->route('dashboard');
     }
 }
