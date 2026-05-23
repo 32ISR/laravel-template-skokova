@@ -14,15 +14,12 @@ return new class extends Migration
         Schema::create('task', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->;
-            $table->;
-            $table->;
-            $table->;
-            $table->;
-            $table->;
-            $table->;
-            $table->;
-            $table->;
+            $table->text('description');
+            $table->enum('status', ['pending','in_progress','done'])->default('pending');
+            $table->enum('priority', ['low', 'medium', 'high'])->default('medium');
+            $table->date('due_date')->nullable();
+            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('category_id')->constrained()->nullOnDelete();
             $table->timestamps();
         });
     }
